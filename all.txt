@@ -1,0 +1,492 @@
+*********add*******
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    int sn1,sn2,or1,or2;
+
+    cout<<"Size of signal 1 & 2: ";
+    cin>>sn1>>sn2;
+
+    float sig1[sn1],sig2[sn2];
+
+    cout<<"Enter signal 1\n";
+    for(int i=0;i<sn1;i++){
+        cin>>sig1[i];
+    }
+    cout<<"Enter origin of signal 1: ";
+    cin>>or1;
+
+    cout<<"Enter signal 2\n";
+    for(int i=0;i<sn2;i++){
+        cin>>sig2[i];
+    }
+
+    cout<<"Enter origin of signal 2: ";
+    cin>>or2;
+
+    int size=max(sn1-or1,sn2-or2)+max(or1,or2);
+
+    float x1[size]={0},x2[size]={0},res[size]={0};
+    int i=max(or1,or2)-or1,j=0;
+    int temp=i+sn1;
+    for(;i<temp;i++){
+        x1[i]=sig1[j];
+        j++;
+    }
+
+    int k=max(or1,or2)-or2,l=0;
+    int temp2=k+sn2;
+    for(;k<temp2;k++){
+        x2[k]=sig2[l];
+        l++;
+    }
+
+    for(int i=0;i<size;i++){
+        res[i]=x2[i]+x1[i];
+    }
+
+    cout<<"Added signal with origin "<<max(or1,or2)<<" \n";
+    for(int i=0;i<size;i++){
+        cout<<res[i]<<" ";
+    }
+    cout<<endl;
+
+    return 0;
+}
+
+
+**************multiplication**************
+
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    int sn1,sn2,or1,or2;
+
+    cout<<"Size of signal 1 & 2: ";
+    cin>>sn1>>sn2;
+
+    float sig1[sn1],sig2[sn2];
+
+    cout<<"Enter signal 1\n";
+    for(int i=0;i<sn1;i++){
+        cin>>sig1[i];
+    }
+    cout<<"Enter origin of signal 1: ";
+    cin>>or1;
+
+    cout<<"Enter signal 2\n";
+    for(int i=0;i<sn2;i++){
+        cin>>sig2[i];
+    }
+
+    cout<<"Enter origin of signal 2: ";
+    cin>>or2;
+
+    int size=max(sn1-or1,sn2-or2)+max(or1,or2);
+
+    float x1[size]={0},x2[size]={0},res[size]={0};
+    int i=max(or1,or2)-or1,j=0;
+    int temp=i+sn1;
+    for(;i<temp;i++){
+        x1[i]=sig1[j];
+        j++;
+    }
+
+    int k=max(or1,or2)-or2,l=0;
+    int temp2=k+sn2;
+    for(;k<temp2;k++){
+        x2[k]=sig2[l];
+        l++;
+    }
+
+    for(int i=0;i<size;i++){
+        res[i]=x2[i]*x1[i];
+    }
+
+    cout<<"Multiplied signal with origin "<<min(or1,or2)<<" \n";
+    for(int i=0;i<size;i++){
+        cout<<res[i]<<" ";
+    }
+    cout<<endl;
+
+    return 0;
+}
+
+***********************odd even ******************
+
+#include<iostream>
+#include<algorithm>
+
+using namespace std;
+
+int main()
+{
+    int sn1,sn2,or1,or2;
+
+    cout<<"Size of signal: ";
+    cin>>sn1;
+    sn2=sn1;
+    float sig1[sn1],sig2[sn2];
+
+    cout<<"Enter signal\n";
+    for(int i=0;i<sn1;i++){
+        cin>>sig1[i];
+        sig2[i]=sig1[i];
+    }
+    cout<<"Enter origin of signal 1: ";
+    cin>>or1;
+
+    reverse(sig2,sig2+sn2);
+
+    or2=(sn1-or1)+1;
+
+    int size=max(sn1-or1,sn2-or2) + max(or1,or2);
+
+    float x1[size]={0},x2[size]={0},odd[size]={0},even[size]={0};
+    int i=max(or1,or2)-or1,j=0;
+    int temp=i+sn1;
+    for(;i<temp;i++){
+        x1[i]=sig1[j];
+        j++;
+    }
+
+    int k=max(or1,or2)-or2,l=0;
+    int temp2=k+sn2;
+    for(;k<temp2;k++){
+        x2[k]=sig2[l];
+        l++;
+    }
+
+    for(int i=0;i<size;i++){
+        even[i]=(x1[i]+x2[i])/2;
+        odd[i]=(x1[i]-x2[i])/2;
+    }
+
+    cout<<"Even components of the signal \n";
+    for(int i=0;i<size;i++){
+        cout<<even[i]<<" ";
+    }
+    cout<<endl;
+
+    cout<<"Odd components of the signal \n";
+    for(int i=0;i<size;i++){
+        cout<<odd[i]<<" ";
+    }
+    cout<<endl;
+
+    return 0;
+}
+
+
+***************differentiation********************
+
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    int no_of_value,dif_point;
+    char check='y';
+
+    cout<<"How many no of values of x & y\n";
+    cin>>no_of_value;
+
+    float x[no_of_value],y[no_of_value];
+
+    cout<<"Enter values of x\n";
+    for(int i=0;i<no_of_value;i++){
+        cin>>x[i];
+    }
+
+    cout<<"Enter values of y\n";
+    for(int i=0;i<no_of_value;i++){
+        cin>>y[i];
+    }
+
+
+    while(check=='y' || check=='Y'){
+
+        cout<<"Enter differentiation point\n";
+        cin>>dif_point;
+        cout<<"Value of differentiation at point "<<dif_point<<" is ";
+        cout<<(y[dif_point]-y[dif_point-1])/(x[dif_point]-x[dif_point-1])<<endl;
+        cout<<"Want to differentiate again(y/n): ";
+        cin>>check;
+    }
+
+
+    return 0;
+}
+
+
+***************linear convolation*************
+
+#include<iostream>
+#include<algorithm>
+
+using namespace std;
+
+int main()
+{
+    int ir,os,is,out_or,in_or,imp_or,sum;
+
+    cout<<"Size of Input Sequence: ";
+    cin>>is;
+    cout<<"Size of Impulse Response: ";
+    cin>>ir;
+
+    os=is+ir-1;
+
+    int out_sec[os]={0},imp_res[ir]={0},in_sec[is]={0};
+
+    cout<<"Enter Input Sequence \n";
+    for(int i=0;i<is;i++){
+        cin>>in_sec[i];
+    }
+    cout<<"Enter origin of Input Sequence: ";
+    cin>>in_or;
+
+    cout<<"Enter Impulse Response\n";
+    for(int i=0;i<ir;i++){
+        cin>>imp_res[i];
+    }
+    cout<<"Enter origin of Impulse Response: ";
+    cin>>imp_or;
+
+
+    reverse(imp_res,imp_res+ir);
+
+    int size=(ir+os-1);
+    int imp[size]={0},in[size]={0};
+
+    for(int i=ir-1,j=0;j<is;j++,i++){
+        in[i]=in_sec[j];
+    }
+
+
+    for(int i=0;i<os;i++){
+
+
+        for(int m=0,k=i,l=0;m<size;m++){
+
+            if(m==k){
+                imp[k]=imp_res[l];
+                k++;l++;
+                if(l==ir)
+                    break;
+            }
+            else{
+                imp[m]=0;
+            }
+        }
+
+        sum=0;
+        for(int j=0;j<size;j++){
+            sum+=in[j]*imp[j];
+        }
+        out_sec[i]=sum;
+    }
+
+    cout<<"Output Sequences : ";
+    for(int i=0;i<os;i++){
+
+        cout<<out_sec[i]<<" ";
+    }
+    cout<<endl;
+
+    return 0;
+}
+
+
+*********************circle method convolation************
+
+#include<iostream>
+#include<algorithm>
+
+using namespace std;
+
+int main()
+{
+    int n1,n2,size,sum,o1,o2;
+
+    cout<<"Size of Signal 1: ";
+    cin>>n1;
+    cout<<"Size of Signal 2: ";
+    cin>>n2;
+
+    size=max(n1,n2);
+
+    int x1[size]={0},x2[size]={0},y[size]={0},temp[size]={0};
+
+    cout<<"Enter Signal 1 : ";
+    for(int i=0;i<n1;i++){
+        cin>>x1[i];
+    }
+    cout<<"Enter origin of Signal 1: ";
+    cin>>o1;
+
+    cout<<"Enter Signal 2 : ";
+    for(int i=0;i<n2;i++){
+        cin>>temp[i];
+    }
+    cout<<"Enter origin of Signal 2: ";
+    cin>>o2;
+
+    x2[0]=temp[0];
+    for(int i=1;i<size;i++){
+        x2[i]=temp[size-i];
+    }
+
+    for(int i=0;i<size;i++){
+
+        sum=0;
+        for(int j=0,k=i;j<size;j++,k++){
+            if(i==0){
+                temp[j]=x2[j];
+            }
+            else{
+                temp[k]=x2[j];
+                if(k==size-1)
+                    k=-1;
+            }
+        }
+
+        for(int j=0;j<size;j++){
+            sum+=x1[j]*temp[j];
+        }
+        y[i]=sum;
+    }
+
+    cout<<"Output Sequences : ";
+    for(int i=0;i<size;i++){
+
+        cout<<y[i]<<" ";
+    }
+    cout<<endl;
+
+    return 0;
+}
+
+
+
+***************************matrix convolation**********************
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int X1[100],X2[100],X3[100],mat[100][100],a_size,b_size,m_size,id;
+
+void init(){
+    m_size=max(a_size,b_size);
+    for(int i=a_size;i<m_size;i++)X1[i]=0;
+    for(int i=b_size;i<m_size;i++)X2[i]=0;
+}
+
+void matrixMul(){
+    for(int i=0;i<m_size;i++){
+        X3[i]=0;
+        for(int j=0;j<m_size;j++){
+            X3[i]=(X3[i] + (mat[i][j] * X2[j]));
+        }
+    }
+}
+void matrixConvolution(){
+
+    for(int i=0;i<m_size;i++)
+        mat[i][0]=X1[i];
+    for(int i=1;i<m_size;i++){
+        for(int j=0;j<m_size;j++){
+            if(j==0)
+            mat[j][i]=mat[m_size-1][i-1];
+            else mat[j][i]=mat[j-1][i-1];
+        }
+    }
+
+    matrixMul();
+
+    for(int i=0;i<m_size;i++)cout<<X3[i]<<" ";printf("\n");
+}
+int main()
+{
+    printf("Enter The length of first Secuence : ");
+    cin>>a_size;
+    printf("Enter First Secuence : ");
+    for(int i=0;i<a_size;i++)cin>>X1[i];
+
+    printf("Enter The length of second Secuence : ");
+    cin>>b_size;
+    printf("Enter Second Secuence :  ");
+    for(int i=0;i<b_size; i++)cin>>X2[i];
+
+    init();
+
+    matrixConvolution();
+    return 0;
+}
+
+
+***************************de convolation********************
+
+#include<iostream>
+#include<algorithm>
+
+using namespace std;
+
+int main()
+{
+    int ir,os,is,out_or,in_or,imp_or,sum;
+
+    cout<<"Size of Output Sequence: ";
+    cin>>os;
+    cout<<"Size of Impulse Response: ";
+    cin>>ir;
+    is=os+1-ir;
+
+    float out_sec[os],imp_res[os]={0},in_sec[is]={0};
+
+    cout<<"Enter Output Sequence \n";
+    for(int i=0;i<os;i++){
+        cin>>out_sec[i];
+    }
+    cout<<"Enter origin of Output Sequence: ";
+    cin>>out_or;
+
+    cout<<"Enter Impulse Response\n";
+    for(int i=0;i<ir;i++){
+        cin>>imp_res[i];
+    }
+    cout<<"Enter origin of Impulse Response: ";
+    cin>>imp_or;
+
+
+    for(int i=0;i<is;i++){
+
+        sum=0;
+        for(int j=0,k=i;j<i;j++,k--){
+            sum+=in_sec[j]*imp_res[k];
+        }
+        in_sec[i]=(out_sec[i]-sum)/imp_res[0];
+    }
+
+
+
+    cout<<"\n\nInput Sequence\n";
+    for(int i=0;i<is;i++){
+        cout<<in_sec[i]<<" ";
+    }
+    cout<<endl;
+
+
+    return 0;
+}
+
+
+
+***********************analog to digital conversion**************
